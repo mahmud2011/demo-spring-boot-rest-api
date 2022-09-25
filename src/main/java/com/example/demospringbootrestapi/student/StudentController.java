@@ -25,4 +25,9 @@ public class StudentController {
     public Student getStudentByID(@PathVariable Long id) {
         return studentService.getStudentByID(id).orElse(new Student());
     }
+
+    @PostMapping(value = "/")
+    public void registerNewStudent(@RequestBody Student student) {
+        studentService.addNewStudent(student);
+    }
 }

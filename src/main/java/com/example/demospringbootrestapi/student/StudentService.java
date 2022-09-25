@@ -22,4 +22,12 @@ public class StudentService {
     public Optional<Student> getStudentByID(Long id) {
         return studentRepository.findById(id);
     }
+
+    public void addNewStudent(Student student) {
+        if (studentRepository.findStudentByEmail(student.getEmail()).isPresent()) {
+            throw new IllegalStateException("student exists");
+        }
+
+        studentRepository.save(student);
+    }
 }
